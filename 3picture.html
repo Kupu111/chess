@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Daily Chess Inspiration</title>
+<style>
+  body {
+    margin: 0;
+    background-color: #000;
+    font-family: Arial, sans-serif;
+    color: #fff;
+  }
+
+  .section {
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+  }
+
+  /* Карточки */
+  .cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card {
+    background-color: #222;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .card-content {
+    padding: 15px;
+  }
+
+  .card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+  }
+
+  .card p {
+    font-size: 0.95em;
+    line-height: 1.4;
+  }
+
+  /* Адаптивность */
+  @media(max-width: 1000px){
+    .cards {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="section">
+  <h2>Your daily chess inspiration</h2>
+  <div class="cards">
+    <!-- Первая карточка -->
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1557683316-973673baf946?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Chess Strategy" />
+      <div class="card-content">
+        <h3>Sharpen your strategy</h3>
+        <p>Get practical advice, clever tactics, and uplifting stories from players just like you—no matter your skill level.</p>
+      </div>
+    </div>
+    <!-- Вторая карточка -->
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1604918226594-3f8ba78c20b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Practice" />
+      <div class="card-content">
+        <h3>Practice, play, progress</h3>
+        <p>Jump into interactive lessons, fun puzzles, and training rooms that make learning chess feel like a team effort.</p>
+      </div>
+    </div>
+    <!-- Третья карточка -->
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1573246419276-0c7f0b4f7b4c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Explore" />
+      <div class="card-content">
+        <h3>Explore, connect, grow</h3>
+        <p>Browse classic games, insightful analysis, and join lively discussions to deepen your chess journey with friends.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
