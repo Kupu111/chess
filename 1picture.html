@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BrainChess</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #111; /* Темный фон */
+    color: #fff;
+  }
+
+  /* Навигационная панель */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #222;
+    padding: 10px 20px;
+  }
+
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 15px;
+  }
+
+  .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+  }
+
+  .nav-links a:hover {
+    background-color: #444;
+  }
+
+  /* Основной блок */
+  .hero {
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+
+  .hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+  }
+
+  /* Кнопки */
+  .buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+  }
+
+  .btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+
+  .btn-primary {
+    background-color: #ff8c00;
+    color: #fff;
+  }
+
+  .btn-secondary {
+    background-color: #555;
+    color: #fff;
+  }
+
+  /* Боковая панель */
+  .sidebar {
+    background-color: #222;
+    padding: 20px;
+    max-width: 250px;
+    border-radius: 8px;
+  }
+
+  .sidebar h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+
+  .sidebar img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .sidebar li {
+    margin-bottom: 15px;
+    cursor: pointer;
+  }
+
+  /* Общий контейнер */
+  .container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Адаптация для мобильных */
+  @media(max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+    .sidebar {
+      max-width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Навигационная панель -->
+<div class="navbar">
+  <div class="navbar-logo">
+    <img src="https://img.icons8.com/ios/50/000000/chess-king.png" alt="logo" class="logo" />
+    <div style="font-weight: bold; font-size: 1.2em;">BrainChess</div>
+  </div>
+  <div class="nav-links">
+    <a href="#">Play</a>
+    <a href="#">About</a>
+    <a href="#">Blog</a>
+    <a href="#">Help</a>
+    <button style="padding:8px 16px; border:none; border-radius:4px; background-color:#ff8c00; color:#fff; cursor:pointer;">Sign up</button>
+  </div>
+</div>
+
+<!-- Основной контент -->
+<div class="container">
+  <!-- Основной блок с заголовком и кнопками -->
+  <div class="hero" style="flex:1;">
+    <h1>Play. Learn. Connect.<br/>Master chess.</h1>
+    <p>Welcome! Dive into a world where chess is more than a game—it's a journey. Challenge friends, train your skills, or explore legendary matches. Whether you're here to compete, learn, or just have fun, you're in the right place. Ready to make your next move?</p>
+    <div class="buttons">
+      <button class="btn btn-primary">Get started</button>
+      <button class="btn btn-secondary">See features</button>
+    </div>
+  </div>
+  
+  <!-- Боковая панель -->
+  <div class="sidebar">
+    <h2>Sign up</h2>
+    <ul>
+      <li>Sign up</li>
+      <li>Log in</li>
+      <li>Play</li>
+      <li>Train</li>
+    </ul>
+    <img src="https://img.icons8.com/ios/50/000000/chess-king.png" alt="logo" />
+    <div style="margin-top:10px;">BRAINCHESS</div>
+  </div>
+</div>
+
+</body>
+</html>
