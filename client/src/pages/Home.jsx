@@ -8,22 +8,9 @@ export default function Home() {
     return (
         <div className="home-page">
             <header>
-                <div className="nav-right">
-                    <button
-                        className="button-outline"
-                        onClick={() => navigate('/login')}
-                    >
-                        Sign in
-                    </button>
-                    <button
-                        className="button-outline"
-                        onClick={() => navigate('/register')}
-                    >
-                        Sign up
-                    </button>
-
+                <div className="nav-left">
                     <div className="logo">
-                        <img src="/BraINChess 1.png" alt="BrainChess Logo" />
+                        <img src="./BraINChess 1.png" alt="BrainChess Logo" />
                         <span>BrainChess</span>
                     </div>
                     <nav>
@@ -34,8 +21,8 @@ export default function Home() {
                     </nav>
                 </div>
                 <div className="nav-right">
-                    <button className="button-outline">Sign in</button>
-                    <button className="button-outline">Sign up</button>
+                    <button className="button-outline" onClick={() => navigate('/login')}>Вход</button>
+                    <button className="button-outline" onClick={() => navigate('/register')}>Регистрация</button>
                 </div>
             </header>
 
@@ -89,100 +76,66 @@ export default function Home() {
                 </section>
             </main>
 
-            <footer className="footer">
-                <p>© 2025 Chess Master. All rights reserved.</p>
-            </footer>
+            <footer style={{
+                backgroundColor: "#1c1c1c",
+                fontFamily: "'Montserrat', sans-serif",
+                color: "#ccc",
+                padding: "60px 80px 20px"
+            }}>
+                <div style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    flexWrap: "wrap"
+                }}>
+                    <div>
+                        <ul style={{
+                            listStyle: "none",
+                            padding: 0,
+                            margin: "0 0 40px"
+                        }}>
+                            <li style={{ marginBottom: "20px" }}><a href="#" style={{ color: "#ccc", textDecoration: "none" }}>Sign up</a></li>
+                            <li style={{ marginBottom: "20px" }}><a href="#" style={{ color: "#ccc", textDecoration: "none" }}>Log in</a></li>
+                            <li style={{ marginBottom: "20px" }}><a href="#" style={{ color: "#ccc", textDecoration: "none" }}>Play</a></li>
+                            <li style={{ marginBottom: "20px" }}><a href="#" style={{ color: "#ccc", textDecoration: "none" }}>Train</a></li>
+                            <li style={{ marginBottom: "20px" }}><a href="#" style={{ color: "#ccc", textDecoration: "none" }}>Games</a></li>
+                        </ul>
+                        <p style={{ color: "#fff", fontSize: "14px" }}>Join a community that loves chess.</p>
+                    </div>
+                    <div style={{ textAlign: "right" }}>
+                        <div style={{ marginBottom: "30px" }}>
+                            <img
+                                src="./BraINChess 1.png"
+                                alt="BrainChess Logo"
+                                style={{
+                                    height: "32px",
+                                    verticalAlign: "middle",
+                                    marginRight: "8px"
+                                }}
+                            />
+                            <span style={{ fontSize: "16px", color: "#fff" }}>BRAINCHESS</span>
+                        </div>
+                        <div>
+                            <a href="#"><img src="./icons8-instagram-48.png" alt="instagram Logo" style={{ height: "20px", marginLeft: "10px" }} /></a>
+                            <a href="#"><img src="./icons8-telegram-app-48.png" alt="telegram Logo" style={{ height: "20px", marginLeft: "10px" }} /></a>
+                            <a href="#"><img src="./icons8-vk-circled-48.png" alt="vk Logo" style={{ height: "20px", marginLeft: "10px" }} /></a>
+                            <a href="#"><img src="./icons8-whatsapp-48.png" alt="whatsapp Logo" style={{ height: "20px", marginLeft: "10px" }} /></a>
+                            <a href="#"><img src="./icons8-youtube-48.png" alt="youtube Logo" style={{ height: "20px", marginLeft: "10px" }} /></a>
+                        </div>
+                    </div>
+                </div>
 
-            <style jsx>{`
-                body {
-                    margin: 0;
-                    font-family: 'Inter', sans-serif;
-                    background-color: #1a1a1a;
-                    color: #fff;
-                }
-                header {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    padding: 16px 32px;
-                    background-color: #1a1a1a;
-                    border-bottom: 1px solid #333;
-                }
-                .nav-left, .nav-right {
-                    display: flex;
-                    align-items: center;
-                    gap: 24px;
-                }
-                .logo {
-                    display: flex;
-                    align-items: center;
-                    gap: 8px;
-                    font-weight: 700;
-                    font-size: 18px;
-                }
-                .logo img {
-                    width: 24px;
-                    height: 24px;
-                }
-                nav a {
-                    text-decoration: none;
-                    color: #ccc;
-                    font-weight: 500;
-                }
-                nav a:hover {
-                    color: #fff;
-                }
-                .button-outline {
-                    padding: 6px 14px;
-                    border: 2px solid rgb(255,204,67);
-                    border-radius: 6px;
-                    color: rgb(255,204,67);
-                    background: transparent;
-                    font-weight: 600;
-                    cursor: pointer;
-                }
-                .main {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    padding: 80px 20px;
-                    text-align: center;
-                }
-                .main h1 {
-                    font-size: 48px;
-                    font-weight: 700;
-                    line-height: 1.2;
-                    margin-bottom: 20px;
-                }
-                .main p {
-                    font-size: 18px;
-                    max-width: 600px;
-                    color: #aaa;
-                    margin-bottom: 32px;
-                }
-                .main-buttons {
-                    display: flex;
-                    gap: 16px;
-                }
-                .main-buttons button:first-child {
-                    background-color: rgb(255,204,67);
-                    color: #000;
-                    font-weight: 600;
-                    padding: 10px 18px;
-                    border: none;
-                    border-radius: 6px;
-                    cursor: pointer;
-                }
-                .main-buttons button:last-child {
-                    background-color: #333;
-                    color: #fff;
-                    font-weight: 600;
-                    padding: 10px 18px;
-                    border: none;
-                    border-radius: 6px;
-                    cursor: pointer;
-                }
-            `}</style>
+                <hr style={{ borderColor: "#333", margin: "40px 0" }} />
+                <div style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    fontSize: "13px",
+                    color: "#888"
+                }}>
+                    <p>All rights reserved © 2025</p>
+                    <p style={{ color: "#fff" }}>Made by Kirill Demidenko</p>
+                </div>
+            </footer>
         </div>
     );
 }
