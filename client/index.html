@@ -1,23 +1,424 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BraINChess</title>
-  <link rel="stylesheet" href="./src/styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Chess | Главная</title>
+    <base target="_self">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@preline/preline@2.0.0/dist/preline.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="/BraINChess 1.png" type="image/png" />
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            dark: '#1a120b',
+                            light: '#3c2a21',
+                            accent: '#d5cea3',
+                            orange: '#e07a1e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #1a120b;
+            color: #d5cea3;
+            overflow-x: hidden;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(26,18,11,0.95) 0%, rgba(60,42,33,0.9) 100%);
+        }
+        
+        .btn-orange {
+            background-color: #e07a1e;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-orange:hover {
+            background-color: #f08a2e;
+            transform: translateY(-2px);
+        }
+        
+        .chess-piece {
+            transition: transform 0.3s ease;
+        }
+        
+        .chess-piece:hover {
+            transform: scale(1.1);
+        }
+        
+        .gm-card {
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gm-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .slide-in {
+            animation: slideIn 0.8s ease-out forwards;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
 </head>
+<body class="min-h-screen">
+    <!-- Header -->
+    <header class="fixed w-full z-50 bg-primary-dark bg-opacity-90 backdrop-blur-sm border-b border-primary-light">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <img src="/BraINChess 1.png" alt="Brain Chess Logo" class="w-10 h-10" >
+                <a href="#" class="text-2xl font-bold text-primary-accent hover:text-white transition-colors" onclick="handleNavClick(event)">BrainChess</a>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="text-primary-accent hover:text-white font-medium transition-colors" onclick="handleNavClick(event)">Главная</a>
+                <a href="#" class="text-primary-accent hover:text-white font-medium transition-colors" onclick="handleNavClick(event)">Турниры</a>
+                <a href="#" class="text-primary-accent hover:text-white font-medium transition-colors" onclick="handleNavClick(event)">Уроки</a>
+                <a href="#" class="text-primary-accent hover:text-white font-medium transition-colors" onclick="handleNavClick(event)">Гроссмейстеры</a>
+                <a href="#" class="text-primary-accent hover:text-white font-medium transition-colors" onclick="handleNavClick(event)">О нас</a>
+            </nav>
+            
+            <div class="flex items-center space-x-4">
+                <button class="btn-orange text-white px-4 py-2 rounded-lg font-medium">Войти</button>
+                <button class="md:hidden text-primary-accent text-xl" id="mobile-menu-button">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-primary-dark py-4 px-4 border-t border-primary-light" id="mobile-menu">
+            <div class="flex flex-col space-y-4">
+                <a href="#" class="text-primary-accent hover:text-white transition-colors" onclick="handleNavClick(event)">Главная</a>
+                <a href="#" class="text-primary-accent hover:text-white transition-colors" onclick="handleNavClick(event)">Турниры</a>
+                <a href="#" class="text-primary-accent hover:text-white transition-colors" onclick="handleNavClick(event)">Уроки</a>
+                <a href="#" class="text-primary-accent hover:text-white transition-colors" onclick="handleNavClick(event)">Гроссмейстеры</a>
+                <a href="#" class="text-primary-accent hover:text-white transition-colors" onclick="handleNavClick(event)">О нас</a>
+            </div>
+        </div>
+    </header>
 
-<body>
-  <main>
-    <div id="root"></div>
-  </main>
-  <script type="module" src="./src/main.jsx"></script>
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1543092587-d8b8feaf3623?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-30"></div>
+        
+        <div class="hero-gradient absolute inset-0"></div>
+        
+        <div class="container mx-auto px-4 z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 slide-in">Искусство <span class="text-primary-orange">Шахмат</span></h1>
+                <p class="text-xl md:text-2xl text-primary-accent mb-10 fade-in">Присоединяйтесь к сообществу шахматистов и совершенствуйте свое мастерство с лучшими гроссмейстерами мира</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4 fade-in">
+                    <button class="btn-orange text-white px-8 py-4 rounded-lg font-bold text-lg">Начать обучение</button>
+                    <button class="border-2 border-primary-orange text-primary-orange px-8 py-4 rounded-lg font-bold text-lg hover:bg-primary-orange hover:text-white transition-colors">Турниры</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-primary-accent text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- Chess Pieces Floating -->
+    <div class="hidden md:block">
+        <img src="bishop (2).png" class="w-16 h-16 absolute top-1/4 left-10 chess-piece floating" style="animation-delay: 0.5s;">
+        <img src="pawn (1).png" class="w-16 h-16 absolute top-1/3 right-20 chess-piece floating" style="animation-delay: 1s;">
+        <img src="board-game.png" class="w-16 h-16 absolute bottom-1/4 left-1/4 chess-piece floating" style="animation-delay: 1.5s;">
+        <img src="knight (2).png" class="w-16 h-16 absolute bottom-1/3 right-1/3 chess-piece floating" style="animation-delay: 2s;">
+    </div>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-primary-light">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-white mb-16">Наши <span class="text-primary-orange">Возможности</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="bg-primary-dark p-8 rounded-xl border border-primary-accent border-opacity-20 hover:border-primary-orange transition-all">
+                    <div class="w-16 h-16 bg-primary-orange rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-chess-queen text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white text-center mb-4">Онлайн обучение</h3>
+                    <p class="text-primary-accent text-center">Индивидуальные уроки с гроссмейстерами и персональные программы обучения для всех уровней</p>
+                </div>
+                
+                <div class="bg-primary-dark p-8 rounded-xl border border-primary-accent border-opacity-20 hover:border-primary-orange transition-all">
+                    <div class="w-16 h-16 bg-primary-orange rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-trophy text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white text-center mb-4">Турниры</h3>
+                    <p class="text-primary-accent text-center">Регулярные онлайн и оффлайн турниры с ценными призами и рейтинговыми очками</p>
+                </div>
+                
+                <div class="bg-primary-dark p-8 rounded-xl border border-primary-accent border-opacity-20 hover:border-primary-orange transition-all">
+                    <div class="w-16 h-16 bg-primary-orange rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-users text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white text-center mb-4">Сообщество</h3>
+                    <p class="text-primary-accent text-center">Общайтесь с единомышленниками, анализируйте партии и находите партнеров для игры</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grandmasters Section -->
+    <section class="py-20 bg-primary-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-white mb-4">Лучшие <span class="text-primary-orange">Гроссмейстеры</span></h2>
+            <p class="text-xl text-primary-accent text-center mb-16">Учитесь у чемпионов мира и ведущих шахматистов</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" id="gm-container">
+                <!-- GM cards will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-primary-orange">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-5xl font-bold text-white mb-2" id="members-count">0</div>
+                    <div class="text-primary-dark font-medium">Участников</div>
+                </div>
+                <div>
+                    <div class="text-5xl font-bold text-white mb-2" id="tournaments-count">0</div>
+                    <div class="text-primary-dark font-medium">Турниров</div>
+                </div>
+                <div>
+                    <div class="text-5xl font-bold text-white mb-2" id="lessons-count">0</div>
+                    <div class="text-primary-dark font-medium">Уроков</div>
+                </div>
+                <div>
+                    <div class="text-5xl font-bold text-white mb-2" id="gms-count">0</div>
+                    <div class="text-primary-dark font-medium">Гроссмейстеров</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-[url('https://images.unsplash.com/photo-1523730205978-59fd1b2965e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2113&q=80')] bg-cover bg-center bg-fixed">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-3xl mx-auto bg-primary-dark bg-opacity-90 p-12 rounded-xl border border-primary-accent border-opacity-20">
+                <h2 class="text-4xl font-bold text-white mb-6">Готовы сделать первый ход?</h2>
+                <p class="text-xl text-primary-accent mb-8">Присоединяйтесь к нашему сообществу и начните свой путь к шахматному мастерству уже сегодня</p>
+                <button class="btn-orange text-white px-8 py-4 rounded-lg font-bold text-lg mx-auto">Зарегистрироваться</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary-dark border-t border-primary-light">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <img src="/BraINChess 1.png" alt="Brain Chess Logo" class="w-10 h-10" >
+                        <span class="text-2xl font-bold text-white">BrainChess</span>
+                    </div>
+                    <p class="text-primary-accent mb-4">Сообщество шахматистов всех уровней. Совершенствуйте свое мастерство с нами.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-primary-accent hover:text-primary-orange text-xl"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="text-primary-accent hover:text-primary-orange text-xl"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="text-primary-accent hover:text-primary-orange text-xl"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-primary-accent hover:text-primary-orange text-xl"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-4">Разделы</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-primary-accent hover:text-primary-orange transition-colors" onclick="handleNavClick(event)">Главная</a></li>
+                        <li><a href="#" class="text-primary-accent hover:text-primary-orange transition-colors" onclick="handleNavClick(event)">Турниры</a></li>
+                        <li><a href="#" class="text-primary-accent hover:text-primary-orange transition-colors" onclick="handleNavClick(event)">Уроки</a></li>
+                        <li><a href="#" class="text-primary-accent hover:text-primary-orange transition-colors" onclick="handleNavClick(event)">Гроссмейстеры</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-4">Ресурсы</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-primary-accent hover:text-primary-orange transition-colors" onclick="handleNavClick(event)">Блог</a></li>
+                        <li><a href="#" class="text-primary-accent hover:text-primary-orange transition-colors" onclick="handleNavClick(event)">Форум</a></li>
+                        <li><a href="#" class="text-primary-accent hover:text-primary-orange transition-colors" onclick="handleNavClick(event)">База партий</a></li>
+                        <li><a href="#" class="text-primary-accent hover:text-primary-orange transition-colors" onclick="handleNavClick(event)">Полезные материалы</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-4">Контакты</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center space-x-2 text-primary-accent"><i class="fas fa-envelope"></i> <span>k.demidencko@yandex.ru</span></li>
+                        <li class="flex items-center space-x-2 text-primary-accent"><i class="fas fa-phone"></i> <span>+7 (977) 134-67-23</span></li>
+                        <li class="flex items-center space-x-2 text-primary-accent"><i class="fas fa-map-marker-alt"></i> <span>Москва, ул. Шахматная, 1</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-primary-light mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-primary-accent mb-4 md:mb-0">© 2025 Brain Chess. Все права защищены.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-primary-accent hover:text-primary-orange transition-colors" onclick="handleNavClick(event)">Политика конфиденциальности</a>
+                    <a href="#" class="text-primary-accent hover:text-primary-orange transition-colors" onclick="handleNavClick(event)">Условия использования</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Handle navigation clicks
+        function handleNavClick(event) {
+            event.preventDefault();
+            const target = event.currentTarget.getAttribute('href');
+            console.log(`Navigating to ${target}`);
+            // Here you would typically use a router in a real application
+            // For this demo, we'll just log the navigation
+        }
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Grandmasters data
+        const grandmasters = [
+            {
+                name: "Магнус Карлсен",
+                title: "Чемпион мира",
+                rating: 2853,
+                country: "Норвегия",
+                image: "carlsen-gct-blitz-76.jpg"
+            },
+            {
+                name: "Ян Непомнящий",
+                title: "Гроссмейстер",
+                rating: 2793,
+                country: "Россия",
+                image: "nepomn.jpeg"
+            },
+            {
+                name: "Хикару Накамура",
+                title: "Гроссмейстер",
+                rating: 2787,
+                country: "США",
+                image: "naka.jpg"
+            },
+            {
+                name: "Алиреза Фирузджа",
+                title: "Гроссмейстер",
+                rating: 2777,
+                country: "Франция",
+                image: "alirez.jpg"
+            }
+        ];
+
+        // Render grandmasters
+        const gmContainer = document.getElementById('gm-container');
+        grandmasters.forEach(gm => {
+            const gmCard = document.createElement('div');
+            gmCard.className = 'gm-card bg-primary-light rounded-xl overflow-hidden';
+            gmCard.innerHTML = `
+                <div class="relative h-64 overflow-hidden">
+                    <img src="${gm.image}" alt="${gm.name}" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary-dark to-transparent"></div>
+                    <div class="absolute bottom-4 left-4">
+                        <h4 class="text-2xl font-bold text-white">${gm.name}</h4>
+                        <p class="text-primary-accent">${gm.title}</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-primary-accent">Рейтинг:</span>
+                        <span class="text-white font-bold">${gm.rating}</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-primary-accent">Страна:</span>
+                        <span class="text-white font-bold">${gm.country}</span>
+                    </div>
+                </div>
+            `;
+            gmContainer.appendChild(gmCard);
+        });
+
+        // Animated counters
+        function animateCounter(elementId, target, duration = 2000) {
+            const element = document.getElementById(elementId);
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    clearInterval(timer);
+                    current = target;
+                }
+                element.textContent = Math.floor(current).toLocaleString();
+            }, 16);
+        }
+
+        // Start counters when stats section is in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter('members-count', 12500);
+                    animateCounter('tournaments-count', 342);
+                    animateCounter('lessons-count', 1560);
+                    animateCounter('gms-count', 28);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(document.querySelector('.bg-primary-orange'));
+
+        // Add hover effect to chess pieces
+        document.querySelectorAll('.chess-piece').forEach(piece => {
+            piece.addEventListener('mouseenter', () => {
+                piece.style.transform = 'scale(1.2) rotate(15deg)';
+            });
+            piece.addEventListener('mouseleave', () => {
+                piece.style.transform = '';
+            });
+        });
+    </script>
 </body>
-
 </html>
