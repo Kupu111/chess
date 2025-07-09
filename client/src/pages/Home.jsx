@@ -10,7 +10,7 @@ export default function Home() {
             <header>
                 <div className="nav-left">
                     <div className="logo">
-                        <img src="./BraINChess 1.png" alt="BrainChess Logo" />
+                        <img src="../assets/images/BraINChess 1.png" alt="BrainChess Logo" />
                         <span>BrainChess</span>
                     </div>
                     <nav>
@@ -104,22 +104,22 @@ export default function Home() {
                     <div style={{ textAlign: "right" }}>
                         <div style={{ marginBottom: "30px" }}>
                             <img
-                                src="./BraINChess 1.png"
+                                src="../assets/images/BraINChess 1.png"
                                 alt="BrainChess Logo"
                                 style={{
                                     height: "32px",
-                                    verticalAlign: "middle",
-                                    marginRight: "8px"
+                                    marginRight: "10px",
+                                    verticalAlign: "middle"
                                 }}
                             />
                             <span style={{ fontSize: "16px", color: "#fff" }}>BRAINCHESS</span>
                         </div>
                         <div>
-                            <a href="#"><img src="./icons8-instagram-48.png" alt="instagram Logo" style={{ height: "20px", marginLeft: "10px" }} /></a>
-                            <a href="#"><img src="./icons8-telegram-app-48.png" alt="telegram Logo" style={{ height: "20px", marginLeft: "10px" }} /></a>
-                            <a href="#"><img src="./icons8-vk-circled-48.png" alt="vk Logo" style={{ height: "20px", marginLeft: "10px" }} /></a>
-                            <a href="#"><img src="./icons8-whatsapp-48.png" alt="whatsapp Logo" style={{ height: "20px", marginLeft: "10px" }} /></a>
-                            <a href="#"><img src="./icons8-youtube-48.png" alt="youtube Logo" style={{ height: "20px", marginLeft: "10px" }} /></a>
+                            <a href="#"><img src="../assets/images/icons8-instagram-48.png" alt="instagram Logo" style={{ height: "20px", marginLeft: "10px" }} /></a>
+                            <a href="#"><img src="../assets/images/icons8-telegram-app-48.png" alt="telegram Logo" style={{ height: "20px", marginLeft: "10px" }} /></a>
+                            <a href="#"><img src="../assets/images/icons8-vk-circled-48.png" alt="vk Logo" style={{ height: "20px", marginLeft: "10px" }} /></a>
+                            <a href="#"><img src="../assets/images/icons8-whatsapp-48.png" alt="whatsapp Logo" style={{ height: "20px", marginLeft: "10px" }} /></a>
+                            <a href="#"><img src="../assets/images/icons8-youtube-48.png" alt="youtube Logo" style={{ height: "20px", marginLeft: "10px" }} /></a>
                         </div>
                     </div>
                 </div>
