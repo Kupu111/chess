@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brain Chess | Главная</title>
-    <base target="_self">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@preline/preline@2.0.0/dist/preline.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -95,6 +94,96 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(14, 5, 5, 0.002);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: linear-gradient(135deg, #e07a1e, #d5cea3);
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .close-modal:hover {
+            transform: rotate(90deg);
+        }
+        .form-input {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            width: 100%;
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+        }
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .form-input:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-color: white;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: white;
+            font-weight: 500;
+        }
+        .forgot-password {
+            display: block;
+            text-align: right;
+            color: white;
+            font-size: 0.875rem;
+            margin-top: -0.5rem;
+            margin-bottom: 1rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .forgot-password:hover {
+            color: #1a120b;
+        }
+        .submit-btn {
+            background-color: #1a120b;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            width: 100%;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: #3c2a21;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -115,7 +204,7 @@
             </nav>
             
             <div class="flex items-center space-x-4">
-                <button class="btn-orange text-white px-4 py-2 rounded-lg font-medium">Войти</button>
+                <button class="btn-orange text-white px-4 py-2 rounded-lg font-medium" id="loginButton">Войти</button>
                 <button class="md:hidden text-primary-accent text-xl" id="mobile-menu-button">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -302,6 +391,26 @@
         </div>
     </footer>
 
+    <!-- Модальное окно авторизации -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal-content relative">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2 class="text-2xl font-bold text-white mb-6 text-center">Авторизация</h2>
+            <form id="loginForm">
+                <div class="mb-4">
+                    <label for="username" class="form-label">Логин</label>
+                    <input type="text" id="username" class="form-input" placeholder="Введите ваш логин" required>
+                </div>
+                <div class="mb-2">
+                    <label for="password" class="form-label">Пароль</label>
+                    <input type="password" id="password" class="form-input" placeholder="Введите ваш пароль" required>
+                </div>
+                <a href="#" class="forgot-password">Забыли пароль?</a>
+                <button type="submit" class="submit-btn">Войти</button>
+            </form>
+        </div>
+    </div>
+
     <script>
         // Handle navigation clicks
         function handleNavClick(event) {
@@ -418,6 +527,40 @@
             piece.addEventListener('mouseleave', () => {
                 piece.style.transform = '';
             });
+        });
+
+        // Обработчик для кнопки "Войти"
+        document.getElementById('loginButton').addEventListener('click', function() {
+            document.getElementById('authModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Блокируем скролл страницы
+        });
+
+        // Обработчик для кнопки закрытия модального окна
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('authModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Восстанавливаем скролл
+        });
+
+        // Закрытие модального окна при клике вне его области
+        document.getElementById('authModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Обработка формы авторизации
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            // Здесь должна быть логика авторизации
+            console.log('Попытка входа:', { username, password });
+            // Временное сообщение об успешном входе
+            alert('Авторизация успешна! (это демо)');
+            // Закрываем модальное окно
+            document.getElementById('authModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
         });
     </script>
 </body>

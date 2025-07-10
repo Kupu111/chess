@@ -1,18 +1,73 @@
-# chess
+![BrainChess Logo](client/src/assets/images/BraINChess 1.png)
 
-html + css + front + back
+# BrainChess
+
+## Внимание
+
+Это программное обеспечение не проходило внешний аудит безопасности и может содержать уязвимости, а также не гарантирует выполнение заявленных целей безопасности. Не используйте его для чувствительных задач и не полагайтесь на его безопасность до проведения независимой проверки. Проект находится в стадии активной разработки.
 
 ---
 
-This project uses React + Vite.
+**BrainChess** — современная, децентрализованная шахматная платформа с поддержкой игры против ИИ и других игроков, обучающими материалами и социальными функциями. Работает без необходимости регистрации, не требует серверов и обеспечивает приватность пользователей.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Лицензия
+Проект распространяется на условиях Public Domain. Подробнее см. файл LICENSE.
 
-Currently, two official plugins are available:
+## Возможности
+- Игра с ИИ и реальными соперниками
+- Децентрализованный режим: peer-to-peer партии без серверов
+- Защита приватности: нет аккаунтов, номеров телефонов и email
+- Обучающие уроки и база партий
+- Турниры и открытые вызовы
+- Гибкая система чатов и форум
+- Кроссплатформенность (Web, iOS, Android)
+- Продвинутая статистика и анализ партий
+- Адаптивный дизайн и оптимизация под мобильные устройства
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Установка и запуск
 
-## Expanding the ESLint configuration
+### Вариант 1: Быстрый старт (Vite + React)
+1. Установите зависимости:
+   ```sh
+   cd client
+   npm install
+   ```
+2. Запустите dev-сервер:
+   ```sh
+   npm run dev
+   ```
+3. Откройте [http://localhost:5174](http://localhost:5174) в браузере
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Вариант 2: Сборка для продакшена
+1. Соберите проект:
+   ```sh
+   npm run build
+   ```
+2. Разместите содержимое папки `dist` на вашем сервере
+
+## Использование
+- Для игры выберите режим (против ИИ, онлайн, турнир)
+- Для обучения перейдите в раздел "Уроки"
+- Для просмотра партий — "База партий"
+- Для общения — используйте форум и чаты
+- Для участия в турнирах — раздел "Турниры"
+
+## Безопасность и приватность
+- Нет регистрации и хранения личных данных
+- Вся логика игры и чатов работает на стороне клиента
+- Для P2P-режима используется WebRTC (или Bluetooth mesh в мобильных версиях)
+- Сообщения и партии могут быть зашифрованы (опционально)
+
+## Архитектура
+- Frontend: React + Vite
+- Backend: Node.js (опционально, для рейтингов и турниров)
+- P2P: WebRTC (браузер), Bluetooth mesh (мобильные устройства)
+- Chess Engine: Stockfish (WebAssembly)
+
+## Разработка
+- Все pull request проходят ревью
+- Вопросы и баги — через Issues на GitHub
+
+---
+
+**BrainChess** — ваш безопасный и современный способ играть, учиться и общаться в мире шахмат!
