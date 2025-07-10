@@ -1,4 +1,4 @@
-!client/src/assets/images/BraINChess 1.png
+![BraINChess 1.png](client/src/assets/images/BraINChess%201.png)
 
 # BrainChess
 
